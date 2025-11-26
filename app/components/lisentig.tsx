@@ -19,7 +19,7 @@ const ListeningCard = () => {
         const fetchCurrentTrack = async () => {
             try {
                 const response = await fetch(
-                    `http://ws.audioscrobbler.com/2.0/?method=user.getrecenttracks&user=${username}&api_key=${apiKey}&format=json&limit=1`
+                    `https://ws.audioscrobbler.com/2.0/?method=user.getrecenttracks&user=${username}&api_key=${apiKey}&format=json&limit=1`
                 );
                 const data = await response.json();
                 const recentTrack = data.recenttracks.track[0];
