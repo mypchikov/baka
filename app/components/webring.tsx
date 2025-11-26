@@ -39,7 +39,7 @@ export default function Webring() {
                 </a>
                 <span>otoring</span>
                 <a
-                    href="https://webring.otomir23.me/41/next"
+                    href="https://webring.otomir23.me/murchikov/next"
                     className="ascii-link"
                 >
                     next
