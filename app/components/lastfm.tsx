@@ -1,7 +1,3 @@
-'use client';
-
-import { useState, useEffect } from 'react';
-
 interface Track {
     name: string;
     artist: { '#text': string };
@@ -10,31 +6,23 @@ interface Track {
     '@attr'?: { nowplaying: string };
 }
 
-const ListeningCard = () => {
-    const [track, setTrack] = useState<Track | null>(null);
+const ListeningCard = async () => {
     const apiKey = 'fa3a2ea96a5d06805621316ece3f23f5';
     const username = 'murchikov';
 
-    useEffect(() => {
-        const fetchCurrentTrack = async () => {
-            try {
-                const response = await fetch(
-                    `https://ws.audioscrobbler.com/2.0/?method=user.getrecenttracks&user=${username}&api_key=${apiKey}&format=json&limit=1`
-                );
-                const data = await response.json();
-                const recentTrack = data.recenttracks.track[0];
-                if (recentTrack['@attr']?.nowplaying) {
-                    setTrack(recentTrack);
-                }
-            } catch (error) {
-                console.error('Error fetching track:', error);
-            }
-        };
-
-        fetchCurrentTrack();
-        const interval = setInterval(fetchCurrentTrack, 30000); // Update every 30 seconds
-        return () => clearInterval(interval);
-    }, [apiKey, username]);
+    let track: Track | null = null;
+    try {
+        const response = await fetch(
+            `https://ws.audioscrobbler.com/2.0/?method=user.getrecenttracks&user=${username}&api_key=${apiKey}&format=json&limit=1`
+        );
+        const data = await response.json();
+        const recentTrack = data.recenttracks.track[0];
+        if (recentTrack['@attr']?.nowplaying) {
+            track = recentTrack;
+        }
+    } catch (error) {
+        console.error('Error fetching track:', error);
+    }
 
     if (!track) return <div>Loading...</div>;
 
