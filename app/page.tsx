@@ -1,6 +1,6 @@
 import Image from "next/image";
 import Webring from "./components/webring";
-import ListeningCard from "./components/lisentig";
+import Lastfm from "./components/lastfm";
 import AgeTimer from "./components/timer";
 
 export default function Home() {
@@ -30,7 +30,7 @@ export default function Home() {
           <br />
           i dont know what i want to type here
         </p>
-        <ListeningCard />
+        <Lastfm />
         <Webring />
       </main>
     </div>
