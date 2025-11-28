@@ -1,8 +1,5 @@
-<<<<<<< HEAD
-=======
 import { useEffect } from 'react';
 
->>>>>>> c5adc69866cc5f67f469527a4750899718da228e
 interface Track {
     name: string;
     artist: { '#text': string };
