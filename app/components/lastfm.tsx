@@ -1,5 +1,3 @@
-import { useEffect } from 'react';
-
 interface Track {
     name: string;
     artist: { '#text': string };
