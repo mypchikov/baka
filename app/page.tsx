@@ -2,6 +2,7 @@ import Image from "next/image";
 import Webring from "./components/webring";
 import Lastfm from "./components/lastfm";
 import AgeTimer from "./components/timer";
+import Glucose from "./components/glucose";
 
 export default function Home() {
   return (
@@ -13,22 +14,20 @@ export default function Home() {
             alt="murchikov's profile"
             width={128}
             height={128}
-            className="h-32 w-32 rounded-full border border-neutral-500/50"
+            className="h-32 w-32 rounded-full"
           />
           <div>
             <h2 className="text-3xl font-italic">murchikov</h2>
             <AgeTimer />
-            <p className="text-xl text-gray-400">
-              frontend, music - Khabarovsk, Ru
+            <p className=" text-gray-300">
+              everyday listening music
             </p>
           </div>
         </div>
-        <p className="font-medium text-lg">
+        <p className="font-medium text-1xl int">
           hello world!
           <br />
-          my site is comming out!
-          <br />
-          i dont know what i want to type here
+          at this time my glucose is <Glucose />
         </p>
         <Lastfm />
         <Webring />
