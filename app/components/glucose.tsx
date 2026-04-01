@@ -2,7 +2,7 @@
 
 import { useEffect, useState, useMemo } from 'react';
 
-const NIGHTSCOUT_API_URL = 'https://nightscout.murchikov.com/api/v1/entries/current.json';
+const NIGHTSCOUT_API_URL = 'https://nightscout.murchikov.ru/api/v1/entries/current.json';
 const UPDATE_INTERVAL_MS = 60 * 1000;
 const GLUCOSE_CONVERSION_FACTOR = 18; // mg/dL to mmol/L
 const TREND_THRESHOLD_MG_DL = 2;

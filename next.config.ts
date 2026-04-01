@@ -5,7 +5,7 @@ const nextConfig: NextConfig = {
 };
 module.exports = {
   images: {
-    remotePatterns: [new URL('https://avatars.githubusercontent.com/u/*')],
+    remotePatterns: [new URL('https://avatars.githubusercontent.com/u/*'), new URL('https://webring.otomir23.me/media/*')],
   },
 }
 export default nextConfig;
