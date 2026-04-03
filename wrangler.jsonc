@@ -1,14 +1,14 @@
 {
+  "$schema": "./node_modules/wrangler/config-schema.json",
+  "main": ".open-next/worker.js",
   "name": "baka",
-  "type": "javascript",
-  "main": "dist/index.js",
-  "compatibility_date": "2025-04-03",
-
-  "pages": {
-    "build": {
-      "command": "pnpm build",
-      "cwd": "./",
-      "root_dir": ".next/public"
-    }
-  },
+  // Set this to today's date
+  "compatibility_date": "2026-04-02",
+  "compatibility_flags": [
+    "nodejs_compat"
+  ],
+  "assets": {
+    "directory": ".open-next/assets",
+    "binding": "ASSETS"
+  }
 }
