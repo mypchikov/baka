@@ -81,7 +81,7 @@ export default function Webring() {
     <div className="mt-2 flex justify-center items-center gap-2">
       <span>←</span>
       {renderLink(data.prev, true)}
-      <span>[otoring]</span>
+      <a href="https://webring.otomir23.me">[otoring]</a>
       {renderLink(data.next, false)}
       <span>→</span>
     </div>

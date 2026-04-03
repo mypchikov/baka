@@ -1,0 +1,14 @@
+{
+  "name": "baka",
+  "type": "javascript",
+  "main": "dist/index.js",
+  "compatibility_date": "2025-04-03",
+
+  "pages": {
+    "build": {
+      "command": "pnpm build",
+      "cwd": "./",
+      "root_dir": ".next/public"
+    }
+  },
+}
