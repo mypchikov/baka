@@ -32,7 +32,6 @@ export default function Webring() {
       key={site.id}
       href={site.url}
       className="ascii-link flex items-center"
-      target="_blank"
       rel="noopener noreferrer"
     >
       {!faviconAfter && site.favicon && (
@@ -66,11 +65,11 @@ export default function Webring() {
   if (!data) {
     return (
       <div className="mt-2 flex justify-center gap-2">
-        <a href="https://webring.otomir23.me/murchikov/prev" className="ascii-link">
+        <a href="https://webring.otomir23.me/murchikov/prev">
           prev
         </a>
         <span>otoring</span>
-        <a href="https://webring.otomir23.me/murchikov/next" className="ascii-link">
+        <a href="https://webring.otomir23.me/murchikov/next">
           next
         </a>
       </div>

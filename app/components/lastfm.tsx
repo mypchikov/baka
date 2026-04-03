@@ -30,7 +30,7 @@ const ListeningCard = () => {
                 const data = await response.json();
                 const recentTrack: Track | undefined = data.recenttracks.track[0];
 
-                if (recentTrack && recentTrack['@attr']?.nowplaying) {
+                if (recentTrack) {
                     setTrack(recentTrack);
                 } else {
                     setTrack(null);
