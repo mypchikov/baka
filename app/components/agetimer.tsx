@@ -23,7 +23,7 @@ const AgeTimer = () => {
 
     return (
         <div className="text-1xl font-mono">
-            {age.toFixed(8)} yo.
+            {age.toFixed(8)} лет.
         </div>
     );
 };
