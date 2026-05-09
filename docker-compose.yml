@@ -1,9 +1,7 @@
 services:
-  baka_site:
-    container_name: baka_site
-    build:
-      context: .
-      dockerfile: Dockerfile
+  baka:
+    container_name: baka
+    image: ghcr.io/mypchikov/baka:latest
     command: npm run start
     restart: always
     networks:
