@@ -2,17 +2,15 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { MDXRemote } from "next-mdx-remote/rsc";
 import rehypePrettyCode from "rehype-pretty-code";
+import type { Pluggable } from "unified";
 import { getAllPosts, getPostBySlug, formatDate } from "../../lib/blog";
 
+const rehypePlugins: Pluggable[] = [
+  [rehypePrettyCode as Pluggable, { theme: "github-dark", keepBackground: true }],
+];
+
 const mdxOptions = {
-  mdxOptions: {
-    rehypePlugins: [
-      [
-        rehypePrettyCode,
-        { theme: "github-dark", keepBackground: true },
-      ] as const,
-    ],
-  },
+  mdxOptions: { rehypePlugins },
 };
 
 interface PageProps {
