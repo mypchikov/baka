@@ -2,16 +2,7 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { MDXRemote } from "next-mdx-remote/rsc";
 import rehypePrettyCode from "rehype-pretty-code";
-import type { Pluggable } from "unified";
 import { getAllPosts, getPostBySlug, formatDate } from "../../lib/blog";
-
-const rehypePlugins: Pluggable[] = [
-  [rehypePrettyCode as Pluggable, { theme: "github-dark", keepBackground: true }],
-];
-
-const mdxOptions = {
-  mdxOptions: { rehypePlugins },
-};
 
 interface PageProps {
   params: Promise<{ slug: string }>;
@@ -65,7 +56,16 @@ export default async function BlogPost({ params }: PageProps) {
             )}
           </header>
           <div className="prose-blog space-y-4 text-sm leading-relaxed">
-            <MDXRemote source={post.content} options={mdxOptions} />
+            <MDXRemote
+              source={post.content}
+              options={{
+                mdxOptions: {
+                  rehypePlugins: [
+                    [rehypePrettyCode, { theme: "github-dark", keepBackground: true }],
+                  ],
+                },
+              }}
+            />
           </div>
         </article>
       </main>
