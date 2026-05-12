@@ -17,9 +17,9 @@ export const metadata: Metadata = {
     openGraph: {
         title: 'Портфолио • @murchikov',
         description: 'Человек, Диабетик, Фронтэнд на пол шышечки',
-        url: 'https://murchikov.ru',
-        siteName: 'murchikov.ru',
-        images: 'https://murchikov.ru/static/nachoneko_crab.png'
+        url: 'https://murchikov.com',
+        siteName: 'murchikov.com',
+        images: 'https://murchikov.com/static/nachoneko_crab.png'
     },
     twitter: {
         card: 'summary'
