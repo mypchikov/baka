@@ -6,7 +6,10 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "eslint"
+    "lint": "eslint",
+    "preview": "opennextjs-cloudflare build && opennextjs-cloudflare preview",
+    "deploy": "opennextjs-cloudflare build && opennextjs-cloudflare deploy",
+    "pages:build": "opennextjs-cloudflare build"
   },
   "dependencies": {
     "gray-matter": "^4.0.3",
@@ -18,6 +21,8 @@
     "shiki": "^4.0.2"
   },
   "devDependencies": {
+    "@opennextjs/cloudflare": "^1.x",
+    "wrangler": "^4.x",
     "@tailwindcss/postcss": "^4",
     "@types/node": "^20",
     "@types/react": "^19",
