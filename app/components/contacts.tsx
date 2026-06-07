@@ -1,5 +1,4 @@
 const LINKS = [
-  { label: "блог", href: "/blog" },
   { label: "telegram", href: "https://t.me/mypchikov" },
   { label: "github", href: "https://github.com/mypchikov" },
   { label: "mail", href: "mailto:me@murchikov.com" },

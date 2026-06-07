@@ -10,9 +10,7 @@ const INNER =
 export default function Banners({ banners }: { banners: Banner[] }) {
   if (banners.length === 0) return null
   return (
-    <section>
-      <h2 className="text-sm text-muted">баннеры</h2>
-      <div className="mt-2 flex flex-wrap items-center gap-2">
+    <div className="flex flex-wrap items-center gap-2">
         {banners.map((b) => {
           const inner = (
             <span className={INNER}>
@@ -44,16 +42,15 @@ export default function Banners({ banners }: { banners: Banner[] }) {
         })}
         <a
           href="/?dvd"
-          className={`ascii-link ${WRAP}`}
+          className={WRAP}
           aria-label="включить DVD-режим"
         >
           <span
-            className={`${INNER} flex items-center justify-center border border-current text-xs`}
+            className={`${INNER} flex items-center justify-center border border-white text-xs text-white`}
           >
             [dvd mode]
           </span>
         </a>
-      </div>
-    </section>
+    </div>
   )
 }

@@ -1,14 +1,10 @@
 import fs from "node:fs/promises";
 import path from "node:path";
 import matter from "gray-matter";
+import type { PostMeta } from "./blog-shared";
 
-export interface PostMeta {
-  slug: string;
-  title: string;
-  date: string;
-  description?: string;
-  tags?: string[];
-}
+export { formatDate } from "./blog-shared";
+export type { PostMeta } from "./blog-shared";
 
 export interface Post extends PostMeta {
   content: string;
@@ -74,13 +70,3 @@ export async function getPostBySlug(slug: string): Promise<Post | null> {
   return null;
 }
 
-export function formatDate(iso: string): string {
-  if (!iso) return "";
-  const d = new Date(iso);
-  if (Number.isNaN(d.getTime())) return iso;
-  return d.toLocaleDateString("ru-RU", {
-    year: "numeric",
-    month: "long",
-    day: "numeric",
-  });
-}

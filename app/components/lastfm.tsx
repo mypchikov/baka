@@ -48,22 +48,31 @@ const ListeningCard = () => {
     }, []);
 
     if (!track) {
-        return null;
+        return <p className="text-sm text-muted">ничего не играет</p>;
     }
 
+    const nowPlaying = track['@attr']?.nowplaying === 'true';
+    const cover = track.image?.[2]?.['#text'];
+
     return (
-        <div className="text-white p-2 rounded-lg">
-            <div className="flex items-center mb-4">
+        <div className="flex items-center gap-3">
+            {cover ? (
                 <img
-                    src={track.image[2]['#text']}
-                    alt="Album art"
-                    className="w-16 h-16 rounded mr-4"
+                    src={cover}
+                    alt=""
+                    className="h-14 w-14 shrink-0 rounded border border-border"
                 />
-                <div>
-                    <h3 className="font-bold">{track.name}</h3>
-                    <p className="text-sm text-gray-400">{track.artist['#text']}</p>
-                    <p className="text-xs text-gray-500">{track.album['#text']}</p>
-                </div>
+            ) : (
+                <div className="h-14 w-14 shrink-0 rounded border border-border bg-bg" />
+            )}
+            <div className="min-w-0">
+                <p className="truncate text-sm font-medium">{track.name}</p>
+                <p className="truncate text-sm text-muted">{track.artist['#text']}</p>
+                {nowPlaying ? (
+                    <p className="font-mono text-xs text-accent">▶ играет сейчас</p>
+                ) : (
+                    <p className="truncate text-xs text-muted">{track.album['#text']}</p>
+                )}
             </div>
         </div>
     );

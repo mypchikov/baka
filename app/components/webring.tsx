@@ -31,7 +31,7 @@ export default function Webring() {
     <a
       key={site.id}
       href={site.url}
-      className="ascii-link flex items-center"
+      className="flex items-center text-accent transition-opacity duration-100 hover:opacity-70"
       rel="noopener noreferrer"
     >
       {!faviconAfter && site.favicon && (

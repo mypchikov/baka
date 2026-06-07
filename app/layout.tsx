@@ -1,10 +1,17 @@
 import type { Metadata, Viewport } from 'next';
-import { Onest } from 'next/font/google';
+import { Onest, JetBrains_Mono } from 'next/font/google';
 import './styles/globals.css';
 
 const onest = Onest({
+    subsets: ['latin', 'cyrillic'],
+    weight: ['400', '500', '600'],
+    variable: '--font-onest'
+});
+
+const mono = JetBrains_Mono({
     subsets: ['latin'],
-    weight: ['400', '500', '600']
+    weight: ['400', '500'],
+    variable: '--font-mono-jb'
 });
 
 export const metadata: Metadata = {
@@ -39,7 +46,9 @@ export default function RootLayout({
 }: Readonly<{ children: React.ReactNode }>) {
     return (
         <html lang="ru">
-            <body className={onest.className}>{children}</body>
+            <body className={`${onest.variable} ${mono.variable} font-sans`}>
+                {children}
+            </body>
         </html>
     );
 }

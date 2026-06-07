@@ -3,6 +3,7 @@ import { notFound } from "next/navigation";
 import { MDXRemote } from "next-mdx-remote/rsc";
 import rehypePrettyCode from "rehype-pretty-code";
 import { getAllPosts, getPostBySlug, formatDate } from "../../lib/blog";
+import Window from "../../components/window";
 
 interface PageProps {
   params: Promise<{ slug: string }>;
@@ -41,33 +42,37 @@ export default async function BlogPost({ params }: PageProps) {
   if (!post) notFound();
 
   return (
-    <div className="flex min-h-screen justify-center bg-zinc-50 py-12 dark:bg-black">
+    <div className="flex min-h-screen justify-center bg-bg py-12 font-sans text-text">
       <main className="w-full max-w-xl px-4">
-        <Link href="/blog" className="text-sm underline underline-offset-2 hover:opacity-70">
-          ← к списку
-        </Link>
-        <article className="mt-6">
-          <header className="mb-6">
-            <h1 className="text-2xl tracking-tight">{post.title}</h1>
-            {post.date && (
-              <p className="mt-1 text-xs text-gray-500">
-                <time dateTime={post.date}>{formatDate(post.date)}</time>
-              </p>
-            )}
-          </header>
-          <div className="prose-blog space-y-4 text-sm leading-relaxed">
-            <MDXRemote
-              source={post.content}
-              options={{
-                mdxOptions: {
-                  rehypePlugins: [
-                    [rehypePrettyCode, { theme: "github-dark", keepBackground: true }],
-                  ],
-                },
-              }}
-            />
+        <Window title={post.title}>
+          <div className="p-5">
+            <Link href="/blog" className="text-sm text-accent transition-opacity duration-100 hover:opacity-70">
+              ← к списку
+            </Link>
+            <article className="mt-6">
+              <header className="mb-6">
+                <h1 className="text-2xl font-semibold tracking-tight">{post.title}</h1>
+                {post.date && (
+                  <p className="mt-1 text-xs text-muted">
+                    <time dateTime={post.date}>{formatDate(post.date)}</time>
+                  </p>
+                )}
+              </header>
+              <div className="prose-blog space-y-4 text-sm leading-relaxed">
+                <MDXRemote
+                  source={post.content}
+                  options={{
+                    mdxOptions: {
+                      rehypePlugins: [
+                        [rehypePrettyCode, { theme: "github-dark", keepBackground: true }],
+                      ],
+                    },
+                  }}
+                />
+              </div>
+            </article>
           </div>
-        </article>
+        </Window>
       </main>
     </div>
   );
