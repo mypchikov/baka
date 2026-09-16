@@ -11,11 +11,11 @@ interface SiteData {
   next: Site;
 }
 
-const MEDIA = "https://webring.otomir23.me/media/";
+const MEDIA = "https://ring.tetopie.lol/media/";
 
 const roots = document.querySelectorAll<HTMLElement>("[data-webring]");
 roots.forEach((root) => {
-  fetch("https://webring.otomir23.me/murchikov/data")
+  fetch("https://ring.tetopie.lol/murchikov/data")
     .then((r) => r.json())
     .then((data: SiteData) => {
       const row = document.createElement("div");
@@ -27,10 +27,10 @@ roots.forEach((root) => {
 
       row.appendChild(renderLink(data.prev, true));
 
-      const otoring = document.createElement("a");
-      otoring.href = "https://webring.otomir23.me";
-      otoring.textContent = "[otoring]";
-      row.appendChild(otoring);
+      const webring = document.createElement("a");
+      webring.href = "https://ring.tetopie.lol/";
+      webring.textContent = "[webring]";
+      row.appendChild(webring);
 
       row.appendChild(renderLink(data.next, false));
 

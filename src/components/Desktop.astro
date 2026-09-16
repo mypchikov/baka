@@ -1,4 +1,6 @@
 ---
+import fs from "node:fs";
+import path from "node:path";
 import Window from "./Window.astro";
 import Banners from "./Banners.astro";
 import Contacts from "./Contacts.astro";
@@ -6,11 +8,20 @@ import { getBanners } from "../lib/banners";
 
 const banners = getBanners();
 
+const wallpapersDir = path.join(process.cwd(), "public", "static", "wallpapers");
+const wallpapers = fs.existsSync(wallpapersDir)
+  ? fs
+      .readdirSync(wallpapersDir)
+      .filter((f) => f.endsWith(".gif"))
+      .map((f) => `/static/wallpapers/${f}`)
+  : [];
+
 const AGE_EPOCH = Date.UTC(2009, 10, 10, 0, 0, 0);
 const ageYears = (Date.now() - AGE_EPOCH) / (1000 * 60 * 60 * 24 * 365.25);
 ---
 
-<div data-desktop class="relative h-screen w-screen overflow-hidden bg-bg p-2 font-sans text-text">
+<div data-desktop data-wallpapers={JSON.stringify(wallpapers)} class="relative h-screen w-screen overflow-hidden bg-bg p-2 font-sans text-text">
+  <div data-wallpaper-dim aria-hidden class="pointer-events-none absolute inset-0 z-0 bg-bg/40"></div>
   <div data-dvd hidden class="pointer-events-none absolute inset-0 z-50 overflow-hidden">
     {banners.map((b) => (
       <div class="absolute left-0 top-0 will-change-transform" style="width: 88px; height: 31px">
@@ -88,10 +99,8 @@ const ageYears = (Date.now() - AGE_EPOCH) / (1000 * 60 * 60 * 24 * 365.25);
     </div>
   </Window>
 
-  <Window title="сейчас играет" desktop width="330px">
-    <div class="p-5">
-      <div data-lastfm><p class="text-sm text-muted">ничего не играет</p></div>
-    </div>
+  <Window title="последние прослушивания" desktop width="340px">
+    <div data-lastfm class="py-2"></div>
   </Window>
 
   <Window title="баннеры + webring" desktop width="300px" hideInDvd>
@@ -105,6 +114,10 @@ const ageYears = (Date.now() - AGE_EPOCH) / (1000 * 60 * 60 * 24 * 365.25);
     </div>
   </Window>
 
+  <Window title="здоровье" desktop width="320px">
+    <div data-health></div>
+  </Window>
+
   <slot />
 </div>
 
@@ -115,4 +128,6 @@ const ageYears = (Date.now() - AGE_EPOCH) / (1000 * 60 * 60 * 24 * 365.25);
   import "../scripts/lastfm.ts";
   import "../scripts/webring.ts";
   import "../scripts/dvd.ts";
+  import "../scripts/wallpaper.ts";
+  import "../scripts/health.ts";
 </script>
