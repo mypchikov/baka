@@ -1,0 +1,37 @@
+---
+import type { Banner } from "../lib/banners";
+
+interface Props {
+  banners: Banner[];
+}
+
+const { banners } = Astro.props;
+
+const WRAP = "group relative inline-block h-[31px] w-[88px] hover:z-10";
+const INNER = "pointer-events-none absolute inset-0 transition-transform duration-100 group-hover:scale-200";
+---
+
+{banners.length === 0 ? null : (
+  <div class="flex flex-wrap items-center gap-2">
+    {banners.map((b) => (
+      b.href ? (
+        <a href={b.href} target="_blank" rel="noopener noreferrer" class={WRAP}>
+          <span class={INNER}>
+            <img src={b.src} alt="" width="88" height="31" style="image-rendering: pixelated" draggable="false" />
+          </span>
+        </a>
+      ) : (
+        <span class={WRAP}>
+          <span class={INNER}>
+            <img src={b.src} alt="" width="88" height="31" style="image-rendering: pixelated" draggable="false" />
+          </span>
+        </span>
+      )
+    ))}
+    <a href="/?dvd" class={WRAP} aria-label="включить DVD-режим">
+      <span class={`${INNER} flex items-center justify-center border border-white text-xs text-white`}>
+        [dvd mode]
+      </span>
+    </a>
+  </div>
+)}

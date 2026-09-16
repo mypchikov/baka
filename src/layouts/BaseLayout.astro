@@ -1,0 +1,45 @@
+---
+import "@fontsource-variable/onest";
+import "@fontsource-variable/jetbrains-mono";
+import "../styles/global.css";
+
+interface Props {
+  title?: string;
+  description?: string;
+  url?: string;
+  image?: string;
+}
+
+const {
+  title = "Портфолио • @murchikov",
+  description = "Человек, Диабетик, Фронтэнд на пол шышечки",
+  url = "https://murchikov.com",
+  image = "https://murchikov.com/static/nachoneko_crab.png",
+} = Astro.props;
+---
+
+<!doctype html>
+<html lang="ru">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=0.8" />
+    <meta name="theme-color" content="#0b5000" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <link rel="icon" href="/static/nachoneko_crab.png" />
+    <link rel="apple-touch-icon" href="/static/nachoneko_crab.png" />
+
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content={url} />
+    <meta property="og:image" content={image} />
+    <meta property="og:site_name" content="murchikov.com" />
+    <meta name="twitter:card" content="summary" />
+
+    {Astro.slots.has("head") && <slot name="head" />}
+  </head>
+  <body class="font-sans">
+    <slot />
+  </body>
+</html>

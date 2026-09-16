@@ -1,6 +1,8 @@
 @import "tailwindcss";
 
 :root {
+  --font-onest: "Onest Variable", ui-sans-serif, system-ui, sans-serif;
+  --font-mono-jb: "JetBrains Mono Variable", ui-monospace, SFMono-Regular, Menlo, monospace;
   --bg: #fafafa;
   --surface: #ffffff;
   --text: #18181b;
@@ -112,4 +114,12 @@ body {
 }
 .prose-blog pre code [data-line] {
   padding: 0 0.25rem;
+}
+
+.win-pop {
+  opacity: 0;
+}
+.win-pop.is-open {
+  opacity: 1;
+  transition: opacity 0.3s ease-out;
 }

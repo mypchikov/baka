@@ -1,0 +1,44 @@
+---
+interface Props {
+  title: string;
+  width?: string;
+  desktop?: boolean;
+  hideInDvd?: boolean;
+}
+
+const { title, width, desktop = false, hideInDvd = false } = Astro.props;
+
+const rootClass = desktop
+  ? "win-pop absolute left-0 top-0 overflow-hidden border border-border bg-surface shadow-md"
+  : "relative z-10 w-full overflow-hidden border border-border bg-surface shadow-md";
+---
+
+<div
+  data-window-root
+  data-window-desktop={desktop || undefined}
+  data-hide-in-dvd={hideInDvd || undefined}
+  class={rootClass}
+  style={width ? `width: ${width}; max-width: calc(100vw - 32px)` : undefined}
+>
+  <div
+    data-window-titlebar
+    class="flex touch-none select-none items-stretch border-b border-border cursor-grab active:cursor-grabbing"
+  >
+    <span class="flex flex-1 items-center px-3 text-xs text-text">{title}</span>
+    <div class="flex" data-window-controls>
+      <button
+        type="button"
+        data-window-close
+        class="flex h-8 w-11 items-center justify-center text-sm text-text hover:bg-red-500 hover:text-white"
+        aria-label="закрыть / сброс"
+      >✕</button>
+    </div>
+  </div>
+  <div data-window-body class="flex-1 overflow-auto">
+    <slot />
+  </div>
+</div>
+
+<script>
+  import "../scripts/window.ts";
+</script>

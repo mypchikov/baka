@@ -1,0 +1,118 @@
+---
+import Window from "./Window.astro";
+import Banners from "./Banners.astro";
+import Contacts from "./Contacts.astro";
+import { getBanners } from "../lib/banners";
+
+const banners = getBanners();
+
+const AGE_EPOCH = Date.UTC(2009, 10, 10, 0, 0, 0);
+const ageYears = (Date.now() - AGE_EPOCH) / (1000 * 60 * 60 * 24 * 365.25);
+---
+
+<div data-desktop class="relative h-screen w-screen overflow-hidden bg-bg p-2 font-sans text-text">
+  <div data-dvd hidden class="pointer-events-none absolute inset-0 z-50 overflow-hidden">
+    {banners.map((b) => (
+      <div class="absolute left-0 top-0 will-change-transform" style="width: 88px; height: 31px">
+        {b.href ? (
+          <a
+            href={b.href}
+            target="_blank"
+            rel="noopener noreferrer"
+            class="pointer-events-auto block h-full w-full"
+          >
+            <img
+              src={b.src}
+              alt=""
+              width="88"
+              height="31"
+              class="pointer-events-none block"
+              style="image-rendering: pixelated"
+              draggable="false"
+            />
+          </a>
+        ) : (
+          <img
+            src={b.src}
+            alt=""
+            width="88"
+            height="31"
+            class="pointer-events-none block"
+            style="image-rendering: pixelated"
+            draggable="false"
+          />
+        )}
+      </div>
+    ))}
+    <div class="absolute left-0 top-0 will-change-transform" style="width: 88px; height: 31px">
+      <a
+        href="/"
+        class="pointer-events-auto flex h-full w-full items-center justify-center border border-current text-xs text-accent transition-opacity duration-100 hover:opacity-70"
+        aria-label="выключить DVD-режим"
+      >[exit dvd]</a>
+    </div>
+  </div>
+
+  <Window title="root@musya: ~" desktop width="350px">
+    <div class="space-y-3 p-5">
+      <h1 data-nickname class="text-2xl font-semibold tracking-tight">
+        <span data-nickname-text>мурчиков</span><span aria-hidden class="animate-pulse">▌</span>
+      </h1>
+      <div class="font-mono text-xs text-accent">
+        <span data-age>{ageYears.toFixed(8)}</span> лет.
+      </div>
+      <p class="text-sm text-muted">Россия, Комсомольск-на-Амуре</p>
+      <p class="text-sm leading-relaxed">
+        я мурчиков, я люблю что-то делать :P
+        <br />
+        я не знаю, что я хочу ещё тут написать
+      </p>
+      <p class="text-sm">
+        рандомный факт:{" "}
+        <button
+          type="button"
+          data-funfact
+          class="text-left italic text-gray-400 transition-opacity hover:opacity-70"
+          aria-label="показать следующий факт"
+        >
+          <span data-funfact-text class="transition-opacity duration-700 ease-in-out">«привет, мир!»</span>{" "}
+          <span class="not-italic" aria-hidden>↻</span>
+        </button>
+      </p>
+    </div>
+  </Window>
+
+  <Window title="контакты" desktop width="220px">
+    <div class="p-5">
+      <Contacts />
+    </div>
+  </Window>
+
+  <Window title="сейчас играет" desktop width="330px">
+    <div class="p-5">
+      <div data-lastfm><p class="text-sm text-muted">ничего не играет</p></div>
+    </div>
+  </Window>
+
+  <Window title="баннеры + webring" desktop width="300px" hideInDvd>
+    <div class="p-5">
+      <Banners banners={banners} />
+      <div data-webring class="mt-2 flex justify-center gap-2 border-t border-border pt-2">
+        <a href="https://webring.otomir23.me/murchikov/prev">prev</a>
+        <span>otoring</span>
+        <a href="https://webring.otomir23.me/murchikov/next">next</a>
+      </div>
+    </div>
+  </Window>
+
+  <slot />
+</div>
+
+<script>
+  import "../scripts/nickname.ts";
+  import "../scripts/agetimer.ts";
+  import "../scripts/funfact.ts";
+  import "../scripts/lastfm.ts";
+  import "../scripts/webring.ts";
+  import "../scripts/dvd.ts";
+</script>
